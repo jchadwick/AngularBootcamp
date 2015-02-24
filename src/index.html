@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AngularJS Demo</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css">
+  <style>
+    .delete { color: red; font-size: 120% }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="header clearfix">
+      <h1>AngularJS Todo List</h1>
+    </div>
+
+    <div class="row">
+
+      <div class="panel panel-default clearfix">
+
+        <div class="panel-heading clearfix">
+          <div class="row">
+            <div class="col-xs-7">
+              <input type="text" class="form-control" placeholder="Filter tasks by..." />
+            </div>
+            <div class="col-xs-3 col-xs-offset-2">
+              <button class="btn pull-right">Clear Completed</button>
+            </div>
+          </div>
+        </div>
+        <!-- /.panel-heading -->
+
+        <div class="panel-body">
+
+          <!-- Task List -->
+          <ul class="list-group">
+
+            <!-- Active task template -->
+            <li class="list-group-item">
+              <div class="input-lg">
+                <input type="checkbox" />
+                <span class="name">Clean cave</span>
+              </div>
+            </li>
+
+            <!-- Completed task template -->
+            <li class="list-group-item text-muted">
+              <div class="input-lg">
+                <input type="checkbox" checked />
+                <span class="name">Dryclean cape</span>
+                <i class="delete fa fa-minus-square pull-right" title="Remove"></i>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="input-lg">
+                <input type="checkbox" />
+                <span class="name">Save Gotham</span>
+              </div>
+            </li>
+
+          </ul>
+
+          <!-- New Task input -->
+          <form>
+            <label>Add new:</label>
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Task description..." />
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary">Add</button>
+              </span>
+            </div>
+          </form>
+
+        </div>
+        <!-- /.panel-body -->
+
+      </div>
+      <!-- /.panel -->
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script> -->
+
+</body>
+
+</html>
