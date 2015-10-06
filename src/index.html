@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +12,31 @@
             color: red;
             font-size: 120%;
         }
-
+        
         .label-as-badge {
             border-radius: 1em;
             padding-right: .7em;
             margin-left: .4em;
         }
-
+        
         .text-strikethrough {
             text-decoration: line-through;
         }
-
+        
         .text-giant {
             font-size: 200%;
             padding: 1em;
         }
     </style>
 </head>
-<body>
+
+<body ng-app="TodoApp" ng-init="
+todos = [
+    { name: 'Clean cave', completed: false },
+    { name: 'Dryclean cape', completed: true },
+    { name: 'Save Gotham', completed: false },
+]">
+    
     <div class="container">
         <div class="header clearfix">
             <h1>AngularJS Todo List</h1>
@@ -37,10 +45,10 @@
             <div class="panel panel-default clearfix">
                 <div class="panel-heading clearfix">
                     <div class="row">
-                        
+
                         <!-- Filter by query -->
                         <div class="col-xs-12 col-sm-7 col-md-8">
-                            <input type="text" class="form-control" placeholder="Filter tasks by..." />
+                            <input ng-model="filterQuery.name" type="text" class="form-control" placeholder="Filter tasks by..." />
                         </div>
                         <!-- /Filter by query -->
 
@@ -48,19 +56,19 @@
                         <div class="hidden-xs col-sm-5 col-md-4">
                             <ul class="nav nav-pills pull-right" role="tablist">
                                 <li role="presentation">
-                                    <button class="btn btn-default active">
+                                    <button class="btn btn-default" ng-class="{ active: filterQuery.completed === ''}" ng-click="filterQuery.completed = ''">
                                         <span class="text-primary">All</span>
                                         <span class="label label-primary label-as-badge">3</span>
                                     </button>
                                 </li>
                                 <li role="presentation">
-                                    <button class="btn btn-default">
+                                    <button class="btn btn-default" ng-class="{ active: filterQuery.completed === false}" ng-click="filterQuery.completed = false">
                                         <span class="text-success">Active</span>
                                         <span class="label label-success label-as-badge">2</span>
                                     </button>
                                 </li>
                                 <li role="presentation">
-                                    <button class="btn btn-default">
+                                    <button class="btn btn-default" ng-class="{ active: filterQuery.completed === true}" ng-click="filterQuery.completed = true">
                                         <span class="text-warning">Complete</span>
                                         <span class="label label-danger label-as-badge">1</span>
                                     </button>
@@ -74,46 +82,31 @@
                 <!-- /.panel-heading -->
 
                 <div class="panel-body">
-                
-                        <!-- Task List -->
+
+                    <!-- Task List -->
                     <ul class="list-group">
-                    
-                        <!-- Active task template -->
-                        <li class="list-group-item">
-                            <div class="input-lg">
-                                <input type="checkbox" />
-                                <span>Clean cave</span>
+
+                        <li ng-repeat="todo in todos | filter: filterQuery | orderBy: ['completed', 'name']" class="list-group-item">
+                            <div class="input-lg" ng-class="{ 'text-muted': todo.completed }">
+                                <input type="checkbox" ng-model="todo.completed" />
+                                <span ng-class="{ 'text-strikethrough': todo.completed }">{{todo.name}}</span>
+                                <i ng-if="todo.completed" ng-click="todos.splice(todos.indexOf(todo), 1)" 
+                                   class="delete glyphicon glyphicon-remove-circle pull-right" title="Remove"></i>
                             </div>
                         </li>
-                        
-                        <!-- Completed task template -->
-                        <li class="list-group-item">
-                            <div class="input-lg text-muted">
-                                <input type="checkbox" checked />
-                                <span class="text-strikethrough">Dryclean cape</span>
-                                <i class="delete glyphicon glyphicon-remove-circle pull-right" title="Remove"></i>
-                            </div>
-                        </li>
-                        
-                        <!-- Another active task template (same as first one) -->
-                        <li class="list-group-item">
-                            <div class="input-lg">
-                                <input type="checkbox" />
-                                <span>Save Gotham</span>
-                            </div>
-                        </li>
+
                     </ul>
                     <div class="row">
                         <div class="col-xs-12 col-sm-10">
 
                             <!-- New Task input -->
-                            <form>
+                            <form ng-submit="todos.push({name: newTaskName, completed: false}); newTaskName = ''">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <button type="submit" class="btn btn-primary input-lg">Add</button>
                                         </span>
-                                        <input type="text" class="form-control input-lg" placeholder="Task description..." />
+                                        <input required ng-model="newTaskName" type="text" class="form-control input-lg" placeholder="Task description..." />
                                     </div>
                                 </div>
                             </form>
@@ -123,7 +116,7 @@
 
                         <!-- Clear completed button -->
                         <div class="col-sm-2 hidden-xs">
-                            <button class="btn btn-sm btn-warning pull-right">Clear Completed</button>
+                            <button ng-click="todos = todos.filter(function(x) { return !x.completed; })" class="btn btn-sm btn-warning pull-right">Clear Completed</button>
                         </div>
                         <!-- /Clear completed button -->
                     </div>
@@ -137,8 +130,10 @@
     </div>
     <!-- /.container -->
 
-    <!-- ** Uncomment to load AngularJS via CDN **
-      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="text/javascript">
+        angular.module("TodoApp", [])
+    </script>
 </body>
+
 </html>

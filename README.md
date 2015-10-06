@@ -13,3 +13,6 @@ Though focusing on the current stable AngularJS release (1.x), the session will 
 
 1. [Wireframe](/jchadwick/AngularBootcamp/tree/Wireframe):
 This is where it all starts - with a basic wireframe
+
+1. [Prototype](/jchadwick/AngularBootcamp/tree/Prototype):
+Then, it turns into a functional prototype
