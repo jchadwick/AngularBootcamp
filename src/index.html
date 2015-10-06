@@ -30,12 +30,7 @@
     </style>
 </head>
 
-<body ng-app="TodoApp" ng-init="
-todos = [
-    { name: 'Clean cave', completed: false },
-    { name: 'Dryclean cape', completed: true },
-    { name: 'Save Gotham', completed: false },
-]">
+<body ng-app="TodoApp">
     
     <div class="container">
         <div class="header clearfix">
@@ -90,7 +85,7 @@ todos = [
                             <div class="input-lg" ng-class="{ 'text-muted': todo.completed }">
                                 <input type="checkbox" ng-model="todo.completed" />
                                 <span ng-class="{ 'text-strikethrough': todo.completed }">{{todo.name}}</span>
-                                <i ng-if="todo.completed" ng-click="todos.splice(todos.indexOf(todo), 1)" 
+                                <i ng-if="todo.completed" ng-click="remove(todo)" 
                                    class="delete glyphicon glyphicon-remove-circle pull-right" title="Remove"></i>
                             </div>
                         </li>
@@ -100,7 +95,7 @@ todos = [
                         <div class="col-xs-12 col-sm-10">
 
                             <!-- New Task input -->
-                            <form ng-submit="todos.push({name: newTaskName, completed: false}); newTaskName = ''">
+                            <form ng-submit="add(newTaskName); newTaskName = ''">
                                 <div class="form-group">
                                     <div class="input-group">
                                         <span class="input-group-btn">
@@ -116,7 +111,7 @@ todos = [
 
                         <!-- Clear completed button -->
                         <div class="col-sm-2 hidden-xs">
-                            <button ng-click="todos = todos.filter(function(x) { return !x.completed; })" class="btn btn-sm btn-warning pull-right">Clear Completed</button>
+                            <button ng-click="clearCompleted()" class="btn btn-sm btn-warning pull-right">Clear Completed</button>
                         </div>
                         <!-- /Clear completed button -->
                     </div>
@@ -131,9 +126,7 @@ todos = [
     <!-- /.container -->
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script type="text/javascript">
-        angular.module("TodoApp", [])
-    </script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 
 </html>

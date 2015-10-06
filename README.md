@@ -16,3 +16,7 @@ This is where it all starts - with a basic wireframe
 
 1. [Prototype](/jchadwick/AngularBootcamp/tree/Prototype):
 Then, it turns into a functional prototype
+
+1. [The Basics](/jchadwick/AngularBootcamp/tree/Basics):
+Introduce $rootScope to move the JavaScript out of the view 
+and check out some of the core utilities like logging
