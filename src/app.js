@@ -1,4 +1,4 @@
-angular.module("TodoApp", [])
+angular.module("TodoApp", ['ngAnimate'])
 
 	.run(function ($rootScope, $log, $window, $timeout) {
 
