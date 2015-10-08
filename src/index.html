@@ -83,7 +83,7 @@
 
                         <li ng-animate="'animate'" ng-repeat="todo in todos | filter: filterQuery | orderBy: ['completed', 'name']" class="list-group-item">
                             <div class="input-lg" ng-class="{ 'text-muted': todo.completed }">
-                                <input type="checkbox" ng-model="todo.completed" />
+                                <input type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo.id, todo.completed)" />
                                 <span ng-class="{ 'text-strikethrough': todo.completed }">{{todo.name}}</span>
                                 <i ng-if="todo.completed" ng-click="remove(todo)" 
                                    class="delete glyphicon glyphicon-remove-circle pull-right" title="Remove"></i>
@@ -140,6 +140,7 @@
     <script type="text/javascript" src="ClearCompletedButton.js"></script>
     <script type="text/javascript" src="TodoList.js"></script>
     <script type="text/javascript" src="TodoFilters.js"></script>
+    <script type="text/javascript" src="TodosService.js"></script>
 </body>
 
 </html>

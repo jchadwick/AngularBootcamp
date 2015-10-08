@@ -1,21 +1,9 @@
 angular.module("TodoApp").controller("ClearCompletedButton", ClearCompletedButton);
 
-ClearCompletedButton.$inject = ['$scope', '$rootScope'];
+ClearCompletedButton.$inject = ['$scope', 'TodosService'];
 
-function ClearCompletedButton($scope, $rootScope) {
+function ClearCompletedButton($scope, TodosService) {
 
-	function clearCompleted() {
-		var completed = $scope.todos.filter(function (x) { return x.completed; })
+	$scope.clearCompleted = TodosService.clearCompleted;
 
-		for (var i = 0; i < completed.length; i++) {
-			remove(completed[i]);
-		}
-	}
-
-	function remove(todo) {
-		$scope.todos.splice($scope.todos.indexOf(todo), 1);
-	}
-
-	$scope.todos = $rootScope.todos;
-	$scope.clearCompleted = clearCompleted;
 }

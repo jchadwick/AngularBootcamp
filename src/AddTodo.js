@@ -1,8 +1,8 @@
 angular.module("TodoApp").controller("AddTodo", AddTodo);
 
-AddTodo.$inject = ['$scope', '$rootScope', '$log' ];
+AddTodo.$inject = ['$scope', '$log', 'TodosService'];
 
-function AddTodo($scope, $rootScope, $log) {
+function AddTodo($scope, $log, TodosService) {
 
 	function add(newTask, form) {
 
@@ -17,7 +17,7 @@ function AddTodo($scope, $rootScope, $log) {
 			}
 		}
 
-		$scope.todos.push({ name: newTask.name, completed: false });
+		TodosService.add(newTask.name);
 
 		newTask.name = '';
 
@@ -27,5 +27,4 @@ function AddTodo($scope, $rootScope, $log) {
 	}
 
 	$scope.add = add;
-	$scope.todos = $rootScope.todos;
 }

@@ -26,3 +26,7 @@ Add some form validation to guard against invalid inputs
 
 1. [Controllers](https://github.com/jchadwick/AngularBootcamp/tree/Controllers):
 Move the JavaScript from the root scope to Controllers
+
+1. [Services & Data Access](https://github.comhttps://github.com/jchadwick/AngularBootcamp/tree/Services):
+Move shared data logic into a service to share state across Controllers, 
+then wire it up to a UI Service with live AJAX calls

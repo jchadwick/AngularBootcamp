@@ -1,12 +1,14 @@
 angular.module("TodoApp").controller("TodoList", TodoList);
 
-TodoList.$inject = ['$scope', '$rootScope' ];
-function TodoList($scope, $rootScope) {
+TodoList.$inject = ['$scope', 'TodosService' ];
 
-	function remove(todo) {
-		$scope.todos.splice($scope.todos.indexOf(todo), 1);
-	}
+function TodoList($scope, TodosService) {
 
-	$scope.todos = $rootScope.todos;
-	$scope.remove = remove;
+	$scope.todos = [];
+	$scope.toggleCompleted = TodosService.toggleCompleted;
+	$scope.remove = TodosService.remove;
+	
+	TodosService.getAll().then(function(todos) {
+		angular.copy(todos, $scope.todos);
+	});
 }
