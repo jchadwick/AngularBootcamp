@@ -30,3 +30,10 @@ Move the JavaScript from the root scope to Controllers
 1. [Services & Data Access](https://github.comhttps://github.com/jchadwick/AngularBootcamp/tree/Services):
 Move shared data logic into a service to share state across Controllers, 
 then wire it up to a UI Service with live AJAX calls
+
+1. [Directives](https://github.com/jchadwick/AngularBootcamp/tree/Directives):
+Turn Controllers and Views into Directives for real modularity
+
+1. [Routing](https://github.com/jchadwick/AngularBootcamp/tree/Routing):
+Apply routing logic to navigate around the views in your application
+
