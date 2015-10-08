@@ -27,52 +27,56 @@
             font-size: 200%;
             padding: 1em;
         }
+        
+        .slide {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .slide.ng-enter {
+            -webkit-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+        
+        .slide.ng-leave {
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+        
+        .slide.ng-enter {
+            top: 100%;
+        }
+        
+        .slide.ng-enter-active {
+            top: 0;
+        }
+        
+        .slide.ng-leave {
+            top: 0;
+        }
+        
+        .slide.ng-leave-active {
+            top: -100%;
+        }
     </style>
 </head>
 
 <body ng-app="TodoApp">
-    
+
     <div class="container">
         <div class="header clearfix">
             <h1>AngularJS Todo List</h1>
         </div>
         <div class="row">
-            <div class="panel panel-default clearfix">
-                <div class="panel-heading clearfix">
-                   
-                   <todo-filters filter="filterQuery"></todo-filters>
-                   
-                </div>
-                <!-- /.panel-heading -->
-
-                <div class="panel-body">
-
-                   <todo-list filter="filterQuery"></todo-list>
-                   
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-10">
-
-                           <add-todo></add-todo>
-
-                        </div>
-
-                        <!-- Clear completed button -->
-                        <div class="col-sm-2 hidden-xs">
-                            <button clear-completed class="btn btn-sm btn-warning pull-right">Clear Completed</button>
-                        </div>
-                        <!-- /Clear completed button -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
+            <ng-view></ng-view>
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container -->
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="components/AddTodo.js"></script>
     <script type="text/javascript" src="components/ClearCompletedButton.js"></script>

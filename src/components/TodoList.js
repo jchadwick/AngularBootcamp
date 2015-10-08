@@ -1,4 +1,5 @@
 angular.module("TodoApp")
+	.controller('TodoList', TodoList)
 	.directive('todoList', function() {
 		
 		return {

@@ -18,6 +18,10 @@ function TodosService($http) {
 		return $http.get(baseUrl).then(_unwrap);
 	}
 
+	function get(todoId) {
+		return $http.get([baseUrl, todoId].join('/')).then(_unwrap);
+	}
+	
 	function remove(todo) {
 		return $http.delete([baseUrl, todo.id].join('/')).then(_unwrap);
 	}
@@ -34,6 +38,7 @@ function TodosService($http) {
 	return {
 		add: add,
 		clearCompleted: clearCompleted,
+		get: get,
 		getAll: getAll,
 		remove: remove,
 		toggleCompleted: toggleCompleted
