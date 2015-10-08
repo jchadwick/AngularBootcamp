@@ -1,4 +1,12 @@
-angular.module("TodoApp").controller("AddTodo", AddTodo);
+angular.module("TodoApp")
+	.directive('addTodo', function() {
+		
+		return {
+			templateUrl: 'components/AddTodo.html',
+			controller: AddTodo	
+		};
+		
+	})
 
 AddTodo.$inject = ['$scope', '$log', 'TodosService'];
 

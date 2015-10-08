@@ -39,88 +39,26 @@
         <div class="row">
             <div class="panel panel-default clearfix">
                 <div class="panel-heading clearfix">
-                    <div ng-controller="TodoFilters" class="row">
-
-                        <!-- Filter by query -->
-                        <div class="col-xs-12 col-sm-7 col-md-8">
-                            <input ng-model="filterQuery.name" type="text" class="form-control" placeholder="Filter tasks by..." />
-                        </div>
-                        <!-- /Filter by query -->
-
-                        <!-- Filter by status -->
-                        <div class="hidden-xs col-sm-5 col-md-4">
-                            <ul class="nav nav-pills pull-right" role="tablist">
-                                <li role="presentation">
-                                    <button class="btn btn-default" ng-class="{ active: isCompletedFilter('')}" ng-click="setCompletedFilter('')">
-                                        <span class="text-primary">All</span>
-                                        <span class="label label-primary label-as-badge">3</span>
-                                    </button>
-                                </li>
-                                <li role="presentation">
-                                    <button class="btn btn-default" ng-class="{ active: isCompletedFilter(false) }" ng-click="setCompletedFilter(false)">
-                                        <span class="text-success">Active</span>
-                                        <span class="label label-success label-as-badge">2</span>
-                                    </button>
-                                </li>
-                                <li role="presentation">
-                                    <button class="btn btn-default" ng-class="{ active: isCompletedFilter(true) }" ng-click="setCompletedFilter(true)">
-                                        <span class="text-warning">Complete</span>
-                                        <span class="label label-danger label-as-badge">1</span>
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /Filter by status -->
-                    </div>
-                    <!-- /.row -->
+                   
+                   <todo-filters filter="filterQuery"></todo-filters>
+                   
                 </div>
                 <!-- /.panel-heading -->
 
                 <div class="panel-body">
 
-                    <!-- Task List -->
-                    <ul ng-controller="TodoList" class="list-group">
-
-                        <li ng-animate="'animate'" ng-repeat="todo in todos | filter: filterQuery | orderBy: ['completed', 'name']" class="list-group-item">
-                            <div class="input-lg" ng-class="{ 'text-muted': todo.completed }">
-                                <input type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo.id, todo.completed)" />
-                                <span ng-class="{ 'text-strikethrough': todo.completed }">{{todo.name}}</span>
-                                <i ng-if="todo.completed" ng-click="remove(todo)" 
-                                   class="delete glyphicon glyphicon-remove-circle pull-right" title="Remove"></i>
-                            </div>
-                        </li>
-
-                    </ul>
+                   <todo-list filter="filterQuery"></todo-list>
+                   
                     <div class="row">
                         <div class="col-xs-12 col-sm-10">
 
-                            <!-- New Task input -->
-                            <form ng-controller="AddTodo" name="newTaskForm" ng-submit="add(newTask, newTaskForm)">
-                                <div class="form-group"  ng-class="{ 'has-error': newTaskForm.$dirty && newTaskForm.$invalid }">
-                                    <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <button type="submit" class="btn btn-primary input-lg">Add</button>
-                                        </span>
-                                        <input name="taskName" ng-model="newTask.name"
-                                               required ng-minlength="2" ng-maxlength="20" 
-                                               type="text" class="form-control input-lg" placeholder="Task description..." />
-                                    </div>
-                                </div>
-                                <div ng-if="newTaskForm.$dirty && newTaskForm.$invalid" class="alert alert-warning" role="alert">
-                                    <!-- Can be either at the form level: -->
-                                    <div ng-if="newTaskForm.$error.required">Please enter a task description</div>
-                                    <!-- Or the field level: -->
-                                    <div ng-if="newTaskForm.taskName.$error.minlength">The task must be at least 2 characters long</div>
-                                    <div ng-if="newTaskForm.taskName.$error.maxlength">The task cannot be more than 20 characters long</div>
-                                </div>
-                            </form>
-                            <!-- /New Task input -->
+                           <add-todo></add-todo>
 
                         </div>
 
                         <!-- Clear completed button -->
                         <div class="col-sm-2 hidden-xs">
-                            <button ng-controller="ClearCompletedButton" ng-click="clearCompleted()" class="btn btn-sm btn-warning pull-right">Clear Completed</button>
+                            <button clear-completed class="btn btn-sm btn-warning pull-right">Clear Completed</button>
                         </div>
                         <!-- /Clear completed button -->
                     </div>
@@ -136,10 +74,10 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
-    <script type="text/javascript" src="AddTodo.js"></script>
-    <script type="text/javascript" src="ClearCompletedButton.js"></script>
-    <script type="text/javascript" src="TodoList.js"></script>
-    <script type="text/javascript" src="TodoFilters.js"></script>
+    <script type="text/javascript" src="components/AddTodo.js"></script>
+    <script type="text/javascript" src="components/ClearCompletedButton.js"></script>
+    <script type="text/javascript" src="components/TodoList.js"></script>
+    <script type="text/javascript" src="components/TodoFilters.js"></script>
     <script type="text/javascript" src="TodosService.js"></script>
 </body>
 

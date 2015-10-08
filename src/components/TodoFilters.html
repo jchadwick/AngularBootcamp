@@ -1,0 +1,33 @@
+<div class="row">
+
+	<!-- Filter by query -->
+	<div class="col-xs-12 col-sm-7 col-md-8">
+		<input ng-model="filterQuery.name" type="text" class="form-control" placeholder="Filter tasks by..." />
+	</div>
+	<!-- /Filter by query -->
+
+	<!-- Filter by status -->
+	<div class="hidden-xs col-sm-5 col-md-4">
+		<ul class="nav nav-pills pull-right" role="tablist">
+			<li role="presentation">
+				<button class="btn btn-default" ng-class="{ active: isCompletedFilter('')}" ng-click="setCompletedFilter('')">
+					<span class="text-primary">All</span>
+					<span class="label label-primary label-as-badge">3</span>
+				</button>
+			</li>
+			<li role="presentation">
+				<button class="btn btn-default" ng-class="{ active: isCompletedFilter(false) }" ng-click="setCompletedFilter(false)">
+					<span class="text-success">Active</span>
+					<span class="label label-success label-as-badge">2</span>
+				</button>
+			</li>
+			<li role="presentation">
+				<button class="btn btn-default" ng-class="{ active: isCompletedFilter(true) }" ng-click="setCompletedFilter(true)">
+					<span class="text-warning">Complete</span>
+					<span class="label label-danger label-as-badge">1</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+	<!-- /Filter by status -->
+</div>

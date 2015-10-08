@@ -1,4 +1,15 @@
-angular.module("TodoApp").controller("TodoList", TodoList);
+angular.module("TodoApp")
+	.directive('todoList', function() {
+		
+		return {
+			scope: {
+				filterQuery: '=filter'
+			},
+			templateUrl: 'components/TodoList.html',
+			controller: TodoList	
+		};
+		
+	})
 
 TodoList.$inject = ['$scope', 'TodosService' ];
 
