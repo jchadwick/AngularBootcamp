@@ -1,8 +1,8 @@
 angular.module('TodoApp').service('TodosService', TodosService);
 
-TodosService.$inject = ['$http', '$rootScope', '$q'];
+TodosService.$inject = ['$http', 'PubSub', '$q'];
 
-function TodosService($http, $rootScope, $q) {
+function TodosService($http, PubSub, $q) {
 
 	var baseUrl = 'https://jchad-todo.azurewebsites.net/todos';
 
@@ -77,7 +77,7 @@ function TodosService($http, $rootScope, $q) {
 	}
 
 	function _raiseChanged() {
-		$rootScope.$broadcast('TodosChanged');
+		PubSub.publish('TodosChanged');
 	}
 
 	function _find(todoId) {

@@ -9,9 +9,9 @@ angular.module("TodoApp")
 
 	})
 
-TodoFilters.$inject = ['$scope', '$rootScope', 'TodosService'];
+TodoFilters.$inject = ['$scope', 'PubSub', 'TodosService'];
 
-function TodoFilters($scope, $rootScope, TodosService) {
+function TodoFilters($scope, PubSub, TodosService) {
 
 	$scope.filterQuery = { name: '', completed: '' };
 	$scope.isCompletedFilter = isCompletedFilter;
@@ -19,7 +19,7 @@ function TodoFilters($scope, $rootScope, TodosService) {
 
 	$scope.$watch('filterQuery', _raiseChanged, true)
 
-	$scope.$on('TodosChanged', function () {
+	PubSub.subscribe('TodosChanged', function () {
 		TodosService.getAll().then(function (todos) {
 			$scope.totalTodoCount = todos.length;
 			$scope.completedTodoCount = _findCompletedCount(todos, true);
@@ -41,6 +41,6 @@ function TodoFilters($scope, $rootScope, TodosService) {
 	}
 
 	function _raiseChanged() {
-		$rootScope.$broadcast('TodoFilterChanged', $scope.filterQuery);
+		PubSub.publish('TodoFilterChanged', $scope.filterQuery);
 	}
 }

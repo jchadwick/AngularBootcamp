@@ -23,7 +23,7 @@ angular.module("TodoApp", ['ngRoute'])
 			.otherwise('/view')
 
 	})
-	.run(function ($rootScope, $log) {
+	.run(function (PubSub, $log) {
 
 		logEvent('TodoFilterChanged');
 		logEvent('TodoAdded');
@@ -31,7 +31,7 @@ angular.module("TodoApp", ['ngRoute'])
 		logEvent('TodoRemoved');
 		
 		function logEvent(eventName) {
-			$rootScope.$on(eventName, function (event, args) {
+			PubSub.subscribe(eventName, function (event, args) {
 				$log.debug('['+eventName+': ', args, ']');
 			});
 		}
