@@ -37,3 +37,5 @@ Turn Controllers and Views into Directives for real modularity
 1. [Routing](https://github.com/jchadwick/AngularBootcamp/tree/Routing):
 Apply routing logic to navigate around the views in your application
 
+1. [Event-Based Communication](https://github.com/jchadwick/AngularBootcamp/tree/PubSub):
+Communicate between components using pub/sub eventing

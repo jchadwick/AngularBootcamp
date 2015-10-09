@@ -1,6 +1,6 @@
 angular.module("TodoApp", ['ngRoute'])
-	.config(function($routeProvider) {
-		
+	.config(function ($routeProvider) {
+
 		$routeProvider
 			.when('/view', {
 				templateUrl: 'pages/view.html',
@@ -11,20 +11,29 @@ angular.module("TodoApp", ['ngRoute'])
 			})
 			.when('/details/:todoId', {
 				templateUrl: 'pages/details.html',
-				controller: ['$routeParams', 'TodosService', function($routeParams, TodosService) {
+				controller: ['$routeParams', 'TodosService', function ($routeParams, TodosService) {
 					var todo = this.todo = {};
-					
-					TodosService.get($routeParams.todoId).then(function(remote) {
+
+					TodosService.get($routeParams.todoId).then(function (remote) {
 						angular.merge(todo, remote);
 					});
 				}],
 				controllerAs: 'vm'
 			})
 			.otherwise('/view')
-		
+
 	})
-	.run(function($rootScope) {
-	
-		$rootScope.filterQuery = { name: '', completed: '' };
+	.run(function ($rootScope, $log) {
+
+		logEvent('TodoFilterChanged');
+		logEvent('TodoAdded');
+		logEvent('TodosChanged');
+		logEvent('TodoRemoved');
 		
+		function logEvent(eventName) {
+			$rootScope.$on(eventName, function (event, args) {
+				$log.debug('['+eventName+': ', args, ']');
+			});
+		}
+
 	})

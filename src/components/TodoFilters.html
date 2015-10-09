@@ -12,19 +12,19 @@
 			<li role="presentation">
 				<button class="btn btn-default" ng-class="{ active: isCompletedFilter('')}" ng-click="setCompletedFilter('')">
 					<span class="text-primary">All</span>
-					<span class="label label-primary label-as-badge">3</span>
+					<span class="label label-primary label-as-badge">{{totalTodoCount}}</span>
 				</button>
 			</li>
 			<li role="presentation">
 				<button class="btn btn-default" ng-class="{ active: isCompletedFilter(false) }" ng-click="setCompletedFilter(false)">
 					<span class="text-success">Active</span>
-					<span class="label label-success label-as-badge">2</span>
+					<span class="label label-success label-as-badge">{{incompleteTodoCount}}</span>
 				</button>
 			</li>
 			<li role="presentation">
 				<button class="btn btn-default" ng-class="{ active: isCompletedFilter(true) }" ng-click="setCompletedFilter(true)">
 					<span class="text-warning">Complete</span>
-					<span class="label label-danger label-as-badge">1</span>
+					<span class="label label-danger label-as-badge">{{completedTodoCount}}</span>
 				</button>
 			</li>
 		</ul>

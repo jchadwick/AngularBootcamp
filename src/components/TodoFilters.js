@@ -2,18 +2,30 @@ angular.module("TodoApp")
 	.directive('todoFilters', function () {
 
 		return {
-			scope: {
-				filterQuery: '=filter'
-			},
+			scope: {},
 			templateUrl: 'components/TodoFilters.html',
 			controller: TodoFilters
 		};
 
 	})
 
-TodoFilters.$inject = ['$scope'];
+TodoFilters.$inject = ['$scope', '$rootScope', 'TodosService'];
 
-function TodoFilters($scope) {
+function TodoFilters($scope, $rootScope, TodosService) {
+
+	$scope.filterQuery = { name: '', completed: '' };
+	$scope.isCompletedFilter = isCompletedFilter;
+	$scope.setCompletedFilter = setCompletedFilter;
+
+	$scope.$watch('filterQuery', _raiseChanged, true)
+
+	$scope.$on('TodosChanged', function () {
+		TodosService.getAll().then(function (todos) {
+			$scope.totalTodoCount = todos.length;
+			$scope.completedTodoCount = _findCompletedCount(todos, true);
+			$scope.incompleteTodoCount = _findCompletedCount(todos, false);
+		})
+	})
 
 	function isCompletedFilter(value) {
 		return $scope.filterQuery.completed === value;
@@ -23,6 +35,12 @@ function TodoFilters($scope) {
 		$scope.filterQuery.completed = value;
 	}
 
-	$scope.isCompletedFilter = isCompletedFilter;
-	$scope.setCompletedFilter = setCompletedFilter;
+	function _findCompletedCount(todos, isCompleted) {
+		var filtered = todos.filter(function (x) { return x.completed == isCompleted; });
+		return filtered.length;
+	}
+
+	function _raiseChanged() {
+		$rootScope.$broadcast('TodoFilterChanged', $scope.filterQuery);
+	}
 }
