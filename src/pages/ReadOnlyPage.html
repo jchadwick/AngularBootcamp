@@ -1,30 +1,25 @@
 <div class="panel panel-default clearfix">
 
-    <div ng-repeat="todo in todos | filter: filterQuery"
-         class="list-group-item text-giant">
+    <div *ngFor="#todo of todos" class="list-group-item text-giant">
         <div class="row">
             <div class="col-xs-1 col-sm-1 input-lg text-center">
                 <span class="text-giant">
-                    <i ng-if="todo.completed" style="color: lawngreen" class="glyphicon glyphicon-ok"></i>
+                    <i *ngIf="todo.completed" style="color: lawngreen" class="glyphicon glyphicon-ok"></i>
                 </span>
             </div>
             <div class="col-xs-11 col-sm-10 input-lg text-center "
-                 ng-class="{ 'text-strikethrough': todo.completed, 'text-muted': todo.completed }"
-                 ng-click="toggleCompleted(todo.id, (todo.completed = !todo.completed))">
+                 [ngClass]="{ 'text-strikethrough': todo.completed, 'text-muted': todo.completed }"
+                 (click)="toggleCompleted(todo)">
                 <span class="name text-giant">
                     {{todo.name}}
                 </span>
             </div>
             <div class="hidden-xs col-sm-1">
-                <a href="#/details/{{todo.id}}" class="btn btn-info">
+                <a [routerLink]="['Details', { id: todo.id }]" class="btn btn-info">
                     <i class="glyphicon glyphicon-list-alt"></i>
                 </a>
             </div>
         </div>
     </div>
 
-</div>
-
-<div class="row text-small">
-    <a href="#/edit" class="btn btn-small">Edit view</a>
 </div>

@@ -2,7 +2,7 @@
 
 	<!-- Filter by query -->
 	<div class="col-xs-12 col-sm-7 col-md-8">
-		<input ng-model="filterQuery.name" type="text" class="form-control" placeholder="Filter tasks by..." />
+		<input [(ngModel)]="filter.name" (ngModelChange)="nameChanged()" type="text" class="form-control" placeholder="Filter tasks by..." />
 	</div>
 	<!-- /Filter by query -->
 
@@ -10,19 +10,25 @@
 	<div class="hidden-xs col-sm-5 col-md-4">
 		<ul class="nav nav-pills pull-right" role="tablist">
 			<li role="presentation">
-				<button class="btn btn-default" ng-class="{ active: isCompletedFilter('')}" ng-click="setCompletedFilter('')">
+				<button class="btn btn-default" 
+                        [ngClass]="{ active: isCompletedFilter(null)}" 
+                        (click)="setCompletedFilter(null)">
 					<span class="text-primary">All</span>
 					<span class="label label-primary label-as-badge">{{totalTodoCount}}</span>
 				</button>
 			</li>
 			<li role="presentation">
-				<button class="btn btn-default" ng-class="{ active: isCompletedFilter(false) }" ng-click="setCompletedFilter(false)">
+				<button class="btn btn-default" 
+                        [ngClass]="{ active: isCompletedFilter(false) }" 
+                        (click)="setCompletedFilter(false)">
 					<span class="text-success">Active</span>
 					<span class="label label-success label-as-badge">{{incompleteTodoCount}}</span>
 				</button>
 			</li>
 			<li role="presentation">
-				<button class="btn btn-default" ng-class="{ active: isCompletedFilter(true) }" ng-click="setCompletedFilter(true)">
+				<button class="btn btn-default" 
+                        [ngClass]="{ active: isCompletedFilter(true) }" 
+                        (click)="setCompletedFilter(true)">
 					<span class="text-warning">Complete</span>
 					<span class="label label-danger label-as-badge">{{completedTodoCount}}</span>
 				</button>

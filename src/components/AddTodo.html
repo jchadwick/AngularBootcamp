@@ -1,18 +1,11 @@
-<form name="newTaskForm" ng-submit="add(newTask, newTaskForm)">
-	<div class="form-group" ng-class="{ 'has-error': newTaskForm.$dirty && newTaskForm.$invalid }">
+<form (submit)="add()">
+	<div class="form-group">
 		<div class="input-group">
 			<span class="input-group-btn">
-                                            <button type="submit" class="btn btn-primary input-lg">Add</button>
-                                        </span>
-			<input name="taskName" ng-model="newTask.name" required ng-minlength="2" ng-maxlength="20" type="text" class="form-control input-lg"
+                <button type="submit" class="btn btn-primary input-lg">Add</button>
+            </span>
+			<input [(ngModel)]="name" required ng-minlength="2" ng-maxlength="20" type="text" class="form-control input-lg"
 			placeholder="Task description..." />
 		</div>
-	</div>
-	<div ng-if="newTaskForm.$dirty && newTaskForm.$invalid" class="alert alert-warning" role="alert">
-		<!-- Can be either at the form level: -->
-		<div ng-if="newTaskForm.$error.required">Please enter a task description</div>
-		<!-- Or the field level: -->
-		<div ng-if="newTaskForm.taskName.$error.minlength">The task must be at least 2 characters long</div>
-		<div ng-if="newTaskForm.taskName.$error.maxlength">The task cannot be more than 20 characters long</div>
 	</div>
 </form>
