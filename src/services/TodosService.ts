@@ -113,8 +113,3 @@ export class TodosService extends EventEmitter<string> {
         this.emit('changed');
     }
 }
-
-export var Todos = new TodosService();
-
-[ 'Clean cave', 'Dryclean cape', 'Save Gotham' ].forEach(todo => Todos.add(todo));
-Todos.toggleCompleted(2);

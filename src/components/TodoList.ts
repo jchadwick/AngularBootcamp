@@ -2,7 +2,7 @@
 
 import {Component, EventEmitter, Inject, Input, OnChanges, OnInit} from 'angular2/core';
 import {NgClass} from 'angular2/common';
-import {Todos} from '../services/TodosService';
+import {TodosService} from '../services/TodosService';
 
 @Component({
     selector: 'todo-list',
@@ -34,8 +34,8 @@ export default class TodoList implements OnChanges, OnInit {
     @Input() filter: TodoFilter;
     todos: Todo[];
 
-    constructor() {
-        Todos.subscribe(this._refresh.bind(this));
+    constructor(private todosService: TodosService) {
+        this.todosService.subscribe(this._refresh.bind(this));
     }
 
     ngOnInit() {
@@ -48,18 +48,18 @@ export default class TodoList implements OnChanges, OnInit {
 
     remove(todo: Todo) {
         console.debug('[TodoList] remove(', todo, ')');
-        Todos.remove(todo);
+        this.todosService.remove(todo);
     }
 
     toggleCompleted(todo: Todo, isCompleted?: boolean) {
         console.debug('[TodoList] toggleCompleted( todo: ', todo, ', isCompleted:', isCompleted, ')');
-        Todos.toggleCompleted(todo, isCompleted);
+        this.todosService.toggleCompleted(todo, isCompleted);
     }
 
     _refresh() {
         var filter = this.filter;
         console.debug('[TodoList] refreshing todos using filter: ', filter)
-        this.todos = Todos.get(filter);
+        this.todos = this.todosService.get(filter);
     }
 
 }

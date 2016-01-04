@@ -1,5 +1,5 @@
 import {Directive, ElementRef} from 'angular2/core';
-import {Todos} from '../services/TodosService';
+import {TodosService} from '../services/TodosService';
 
 @Directive({
     selector: '[clear-completed]',
@@ -9,8 +9,11 @@ import {Todos} from '../services/TodosService';
 })
 export class ClearCompletedButton {
     
+    constructor(private todosService: TodosService) {
+    }
+
     clearCompleted() {
-        Todos.clearCompleted();
+        this.todosService.clearCompleted();
     }
     
 }
