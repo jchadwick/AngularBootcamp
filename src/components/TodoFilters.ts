@@ -2,7 +2,7 @@
 
 import {Component, EventEmitter, Output} from 'angular2/core';
 import {NgClass, NgModel} from 'angular2/common';
-import {Todos} from './TodosService';
+import {Todos} from '../services/TodosService';
 
 @Component({
     selector: 'todo-filters',

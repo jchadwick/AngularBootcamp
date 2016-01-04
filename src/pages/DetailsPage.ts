@@ -1,11 +1,7 @@
-/// <reference path="../typings/tsd.d.ts" />
-
-import {Component} from 'angular2/core';
-import {NgClass, OnInit} from 'angular2/common';
+import {Component, OnInit} from 'angular2/core';
+import {NgClass} from 'angular2/common';
 import {RouteParams, Router} from 'angular2/router';
-import {RouteParams} from 'angular2/router';
-import {Todo} from '../components/model';
-import {Todos} from '../components/TodosService'
+import {Todos} from '../services/TodosService'
 
 @Component({
     selector: 'details-page',
@@ -34,6 +30,7 @@ export default class DetailsPage implements OnInit {
     }
     
     ngOnInit() {
-        this.todo = Todos.getById(this.routeParams.get('id'));
+        var todoId = parseInt(this.routeParams.get('id'));
+        this.todo = Todos.getById(todoId);
     }
 }

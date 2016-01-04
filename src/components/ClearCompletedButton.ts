@@ -1,5 +1,5 @@
 import {Directive, ElementRef} from 'angular2/core';
-import {Todos} from './TodosService';
+import {Todos} from '../services/TodosService';
 
 @Directive({
     selector: '[clear-completed]',

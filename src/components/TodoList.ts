@@ -2,7 +2,7 @@
 
 import {Component, EventEmitter, Inject, Input, OnChanges, OnInit} from 'angular2/core';
 import {NgClass} from 'angular2/common';
-import {Todos} from './TodosService';
+import {Todos} from '../services/TodosService';
 
 @Component({
     selector: 'todo-list',
