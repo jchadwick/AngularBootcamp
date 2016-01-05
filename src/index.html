@@ -24,19 +24,20 @@
 
     <!-- 2. Configure SystemJS -->
     <script>
+        var config = {
+            format: 'register',
+            defaultExtension: 'js'
+          };
+          
         System.config({
         packages: {        
-          components: {
-            format: 'register',
-            defaultExtension: 'js'
-          },
-          pages: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
+          app: config,
+          components: config,
+          services: config,
+          pages: config
         }
       });
-      System.import('components/boot').then(null, console.error.bind(console));
+      System.import('app/boot').then(null, console.error.bind(console));
     </script>
 </head>
 

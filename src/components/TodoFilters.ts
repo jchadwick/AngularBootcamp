@@ -2,7 +2,7 @@
 
 import {Component, EventEmitter, Output} from 'angular2/core';
 import {NgClass, NgModel} from 'angular2/common';
-import {Todos} from './TodosService';
+import {TodosService} from '../services/TodosService';
 
 @Component({
     selector: 'todo-filters',
@@ -26,8 +26,8 @@ export class TodoFilters {
     completedTodoCount = 0;
     incompleteTodoCount = 0;
 
-    constructor() {
-        Todos.subscribe(this._refresh.bind(this));
+    constructor(private todosService: TodosService) {
+        this.todosService.subscribe(this._refresh.bind(this));
         this._refresh();
     }
 
@@ -55,7 +55,7 @@ export class TodoFilters {
     }
 
     private _refresh() {
-        var todos = Todos.get();
+        var todos = this.todosService.get();
         this.totalTodoCount = todos.length;
         this.completedTodoCount = this._findCompletedCount(todos, true);
         this.incompleteTodoCount = this._findCompletedCount(todos, false);

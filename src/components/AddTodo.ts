@@ -2,7 +2,7 @@
 
 import {Component} from 'angular2/core';
 import {NgClass, NgModel, NgIf, NgForm} from 'angular2/common';
-import {Todos} from './TodosService';
+import {TodosService} from '../services/TodosService';
 
 @Component({
     selector: 'add-todo',
@@ -10,11 +10,14 @@ import {Todos} from './TodosService';
     templateUrl: 'components/AddTodo.html'
 })
 export class AddTodo {
-    
+
     name = '';
+
+    constructor(private todosService: TodosService) {
+    }
     
     add() {
-        Todos.add(this.name);
+        this.todosService.add(this.name);
         this.name = '';
     }
 }
