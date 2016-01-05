@@ -1,5 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import {Component} from 'angular2/core';
 import {NgClass, NgModel, NgIf, NgForm} from 'angular2/common';
 import {TodosService} from '../services/TodosService';

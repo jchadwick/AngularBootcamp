@@ -1,5 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import {Component, EventEmitter, Inject, Input, OnChanges, OnInit} from 'angular2/core';
 import {NgClass} from 'angular2/common';
 import {TodosService} from '../services/TodosService';
@@ -59,7 +57,7 @@ export default class TodoList implements OnChanges, OnInit {
     _refresh() {
         var filter = this.filter;
         console.debug('[TodoList] refreshing todos using filter: ', filter)
-        this.todos = this.todosService.get(filter);
+        this.todosService.get(filter).then(todos => this.todos = todos);
     }
 
 }

@@ -34,6 +34,6 @@ export default class DetailsPage implements OnInit {
     
     ngOnInit() {
         var todoId = parseInt(this.routeParams.get('id'));
-        this.todo = this.todosService.getById(todoId);
+        this.todosService.getById(todoId).then(todo => this.todo = todo);
     }
 }

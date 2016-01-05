@@ -1,5 +1,3 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import {Component} from 'angular2/core';
 import TodoList from '../components/TodoList';
 import {TodoFilters} from '../components/TodoFilters';

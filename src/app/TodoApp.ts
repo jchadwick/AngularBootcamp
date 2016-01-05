@@ -1,7 +1,5 @@
-/// <reference path="../typings/tsd.d.ts" />
-
 import {Component, OnInit} from 'angular2/core';
-import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {TodosService} from '../services/TodosService';
 import DetailsPage from '../pages/DetailsPage';
 import EditPage from '../pages/EditPage';
@@ -15,7 +13,6 @@ import ReadOnlyPage from '../pages/ReadOnlyPage';
 @Component({
     selector: 'todo-app',
     directives: [ROUTER_DIRECTIVES],
-    providers: [ROUTER_PROVIDERS, TodosService],
     template: `
         <div class="container">
             <div class="header clearfix">
@@ -38,8 +35,6 @@ export default class TodoApp implements OnInit {
     }
 
     ngOnInit() {
-        [ 'Clean cave', 'Dryclean cape', 'Save Gotham' ].forEach(x => this.todosService.add(x));
-        this.todosService.toggleCompleted(2);
     }
     
 }
